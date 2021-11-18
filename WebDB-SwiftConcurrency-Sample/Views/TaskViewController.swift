@@ -19,10 +19,8 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         Task {
-            assert(Thread.isMainThread)
             indicator.startAnimating()
             task = Task {
-                assert(Thread.isMainThread)
                 return try await fetchThumbnailWithAsyncAwait()
             }
             imageView.image = try? await task?.value
