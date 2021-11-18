@@ -4,13 +4,9 @@
 
 ## 動作検証環境
 
-Swift 5.5
-Xcode 13.0
-iOS15.0
-
-※ Build Settings > Other Swift Flagsに`-Xfrontend -warn-concurrency`を設定しています。
-
-![Other Swift Flags](./images/other_swift_flags.png)
+Swift 5.5.1
+Xcode 13.1
+iOS15.1
 
 ## 使用API
 
