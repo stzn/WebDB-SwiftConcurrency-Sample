@@ -216,24 +216,30 @@ func fetchThumbnailsWithTaskThrowingGroup() async throws -> [UIImage] {
 ///   - needThrowError: エラーをスローする必要があるかどうか
 ///   - needCheckCancel: キャンセル状態をチェックするかどうか(する場合はCancellationErrorをスローする)
 func checkTaskGroupCooperativeCancellation(needThrowError: Bool, needCheckCancel: Bool) async {
+    struct SomeError: Error {}
+
+    print("===================================")
+    print("Group開始")
+
     @Sendable func runSlowTask(_ number: Int) async throws -> Int {
-        struct SomeError: Error {}
+        print("Child開始: number \(number)")
+
+        if number == 1 && needThrowError {
+            print("Childエラー!!!!!!!!!!: number \(number)")
+            throw SomeError()
+        }
 
         if needCheckCancel {
+            print("エラーチェック: number \(number)")
             try await Task.sleep(nanoseconds: NSEC_PER_SEC * UInt64.random(in: 2..<5))
         } else {
             await Task.sleep(NSEC_PER_SEC * UInt64.random(in: 2..<5))
             if Task.isCancelled {
                 // キャンセル済かどうかをチェックする(処理は継続する)
-                print("Childキャンセル済: \(number)")
+                print("Childキャンセル済: number \(number)")
             }
         }
-
-        if number == 1 && needThrowError {
-            print("Childエラー: \(number)")
-            throw SomeError()
-        }
-        print("Child終了: \(number)")
+        print("Child終了: number \(number)")
         return number * 2
     }
 
@@ -255,8 +261,9 @@ func checkTaskGroupCooperativeCancellation(needThrowError: Bool, needCheckCancel
         }
         print("Group終了: \(groupResults)")
     } catch {
-        print("Groupエラー: \(error)")
+        print("Groupエラー!!!!!!!!!!: \(error)")
     }
+    print("===================================")
 }
 
 // MARK: - Actor samples
