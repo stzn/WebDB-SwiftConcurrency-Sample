@@ -12,7 +12,7 @@
 		D6729C442712C3FB00AB1172 /* ConcurrencySampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C312712C30500AB1172 /* ConcurrencySampleApp.swift */; };
 		D6729C452712C40D00AB1172 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6729C302712C30500AB1172 /* Assets.xcassets */; };
 		D6729C462712C41500AB1172 /* AsyncSequenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C332712C30600AB1172 /* AsyncSequenceView.swift */; };
-		D6729C472712C41500AB1172 /* TaskGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C342712C30600AB1172 /* TaskGroupView.swift */; };
+		D6729C472712C41500AB1172 /* TaskThrowingGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C342712C30600AB1172 /* TaskThrowingGroupView.swift */; };
 		D6729C482712C41500AB1172 /* SafeClassMemberAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C352712C30600AB1172 /* SafeClassMemberAccessView.swift */; };
 		D6729C492712C41500AB1172 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C3B2712C30600AB1172 /* TaskViewController.swift */; };
 		D6729C4A2712C41500AB1172 /* AsyncLetMultipleImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C3F2712C30600AB1172 /* AsyncLetMultipleImagesView.swift */; };
@@ -34,7 +34,7 @@
 		D6729C302712C30500AB1172 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6729C312712C30500AB1172 /* ConcurrencySampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencySampleApp.swift; sourceTree = "<group>"; };
 		D6729C332712C30600AB1172 /* AsyncSequenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSequenceView.swift; sourceTree = "<group>"; };
-		D6729C342712C30600AB1172 /* TaskGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGroupView.swift; sourceTree = "<group>"; };
+		D6729C342712C30600AB1172 /* TaskThrowingGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskThrowingGroupView.swift; sourceTree = "<group>"; };
 		D6729C352712C30600AB1172 /* SafeClassMemberAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeClassMemberAccessView.swift; sourceTree = "<group>"; };
 		D6729C362712C30600AB1172 /* AsyncLetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncLetView.swift; sourceTree = "<group>"; };
 		D6729C372712C30600AB1172 /* AsyncStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncStreamView.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 				D6729C3E2712C30600AB1172 /* DataRaceClassView.swift */,
 				D6729C3C2712C30600AB1172 /* NotDataRaceActorView.swift */,
 				D6729C352712C30600AB1172 /* SafeClassMemberAccessView.swift */,
-				D6729C342712C30600AB1172 /* TaskGroupView.swift */,
+				D6729C342712C30600AB1172 /* TaskThrowingGroupView.swift */,
 				D6729C382712C30600AB1172 /* TaskView.swift */,
 				D6729C3B2712C30600AB1172 /* TaskViewController.swift */,
 				D6729C392712C30600AB1172 /* UnsafeClassMemberAccessView.swift */,
@@ -200,7 +200,7 @@
 				D6729C4D2712C41500AB1172 /* TaskView.swift in Sources */,
 				D6729C542712C41500AB1172 /* CallbackView.swift in Sources */,
 				D6729C512712C41500AB1172 /* DataRaceClassView.swift in Sources */,
-				D6729C472712C41500AB1172 /* TaskGroupView.swift in Sources */,
+				D6729C472712C41500AB1172 /* TaskThrowingGroupView.swift in Sources */,
 				D6729C482712C41500AB1172 /* SafeClassMemberAccessView.swift in Sources */,
 				D6729C462712C41500AB1172 /* AsyncSequenceView.swift in Sources */,
 				D6729C502712C41500AB1172 /* NotDataRaceActorView.swift in Sources */,

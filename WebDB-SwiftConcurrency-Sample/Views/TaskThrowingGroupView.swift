@@ -6,13 +6,13 @@
 
 import SwiftUI
 
-struct TaskGroupView: View {
+struct TaskThrowingGroupView: View {
     @State private var images = [UIImage]()
 
     var body: some View {
         if images.isEmpty {
             loadOnAppear {
-                let images = try await fetchThumbnailsWithTaskGroup()
+                let images = try await fetchThumbnailsWithTaskThrowingGroup()
                 self.images.append(contentsOf: images)
             }
         } else {
@@ -25,8 +25,8 @@ struct TaskGroupView: View {
     }
 }
 
-struct TaskGroupView_Previews: PreviewProvider {
+struct TaskThrowingGroupView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskGroupView()
+        TaskThrowingGroupView()
     }
 }

@@ -184,9 +184,9 @@ func fetchThumbnailsWithAsyncLet() async throws -> [UIImage] {
     return thumbnails.map(\.value)
 }
 
-// MARK: TaskGroup
+// MARK: TaskThrowingGroup
 
-func fetchThumbnailsWithTaskGroup() async throws -> [UIImage] {
+func fetchThumbnailsWithTaskThrowingGroup() async throws -> [UIImage] {
     var thumbnails: [Int: UIImage] = [:]
     try await withThrowingTaskGroup(of: (Int, UIImage).self) { group in
         for id in 0..<5 {
