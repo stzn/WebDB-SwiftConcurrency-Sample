@@ -202,6 +202,63 @@ func fetchThumbnailsWithTaskThrowingGroup() async throws -> [UIImage] {
     return thumbnails.map(\.value)
 }
 
+// MARK: TaskGroup Cooperative Cancellation
+
+/*
+ NOTE:
+ あるChild Taskでエラーが発生した場合、他のChild Taskはキャンセル状態になるが処理は継続する
+ 処理を中断したい場合はキャンセルチェックの処理を手動で追加する必要がある
+ Group全体の結果としてはエラーになる
+*/
+
+/// Taskの協調キャンセルの動作確認用のメソッド
+/// - Parameters:
+///   - needThrowError: エラーをスローする必要があるかどうか
+///   - needCheckCancel: キャンセル状態をチェックするかどうか(する場合はCancellationErrorをスローする)
+func checkTaskGroupCooperativeCancellation(needThrowError: Bool, needCheckCancel: Bool) async {
+    @Sendable func runSlowTask(_ number: Int) async throws -> Int {
+        struct SomeError: Error {}
+
+        if needCheckCancel {
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC * UInt64.random(in: 2..<5))
+        } else {
+            await Task.sleep(NSEC_PER_SEC * UInt64.random(in: 2..<5))
+            if Task.isCancelled {
+                // キャンセル済かどうかをチェックする(処理は継続する)
+                print("Childキャンセル済: \(number)")
+            }
+        }
+
+        if number == 1 && needThrowError {
+            print("Childエラー: \(number)")
+            throw SomeError()
+        }
+        print("Child終了: \(number)")
+        return number * 2
+    }
+
+    do {
+        let groupResults = try await withThrowingTaskGroup(
+            of: Int.self,
+            returning: [Int].self
+        ) { group in
+            for number in 0...5 {
+                group.addTask {
+                    try await runSlowTask(number)
+                }
+            }
+            var childResults: [Int] = []
+            for try await number in group {
+                childResults.append(number)
+            }
+            return childResults
+        }
+        print("Group終了: \(groupResults)")
+    } catch {
+        print("Groupエラー: \(error)")
+    }
+}
+
 // MARK: - Actor samples
 
 // MARK: データ競合を起こすクラス

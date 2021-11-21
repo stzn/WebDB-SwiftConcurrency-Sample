@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D64D7E1A2749DF9300E80E6C /* TaskGroupCooperativeCancellationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D7E192749DF9300E80E6C /* TaskGroupCooperativeCancellationView.swift */; };
 		D66792982713AAE200323AD9 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66792972713AAE100323AD9 /* NotificationsView.swift */; };
 		D6729C432712C30B00AB1172 /* ConcurrencyFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C422712C30B00AB1172 /* ConcurrencyFunctions.swift */; };
 		D6729C442712C3FB00AB1172 /* ConcurrencySampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6729C312712C30500AB1172 /* ConcurrencySampleApp.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D64D7E192749DF9300E80E6C /* TaskGroupCooperativeCancellationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGroupCooperativeCancellationView.swift; sourceTree = "<group>"; };
 		D66792972713AAE100323AD9 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		D6729C302712C30500AB1172 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6729C312712C30500AB1172 /* ConcurrencySampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencySampleApp.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				D6729C3B2712C30600AB1172 /* TaskViewController.swift */,
 				D6729C392712C30600AB1172 /* UnsafeClassMemberAccessView.swift */,
 				D6729C3A2712C30600AB1172 /* ViewHelper.swift */,
+				D64D7E192749DF9300E80E6C /* TaskGroupCooperativeCancellationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				D6729C512712C41500AB1172 /* DataRaceClassView.swift in Sources */,
 				D6729C472712C41500AB1172 /* TaskThrowingGroupView.swift in Sources */,
 				D6729C482712C41500AB1172 /* SafeClassMemberAccessView.swift in Sources */,
+				D64D7E1A2749DF9300E80E6C /* TaskGroupCooperativeCancellationView.swift in Sources */,
 				D6729C462712C41500AB1172 /* AsyncSequenceView.swift in Sources */,
 				D6729C502712C41500AB1172 /* NotDataRaceActorView.swift in Sources */,
 				D6729C442712C3FB00AB1172 /* ConcurrencySampleApp.swift in Sources */,

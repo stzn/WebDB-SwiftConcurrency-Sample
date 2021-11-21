@@ -29,7 +29,8 @@ iOS15.1
 - Task APIのサンプル
   - async letで静的な数の同時並行処理
   - async letで動的な数の同時並行処理
-  - TaskGroupで同時並行処理
+  - TaskThrowingGroupで同時並行処理
+  - TaskGroupと協調キャンセル
   - TaskとUIKit
   - TaskとSwiftUI
 - Actor/Sendableのサンプル

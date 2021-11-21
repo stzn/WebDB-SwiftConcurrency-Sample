@@ -28,6 +28,7 @@ struct ConcurrencySampleApp: App {
                         NavigationLink("async letで静的な数の同時並行処理") { AsyncLetView().navigationTitle("async let(静的)") }
                         NavigationLink("async letで動的な数の同時並行処理") { AsyncLetMultipleImagesView().navigationTitle("async let(動的)") }
                         NavigationLink("TaskThrowingGroupViewで同時並行処理") { TaskThrowingGroupView().navigationTitle("TaskThrowingGroup") }
+                        NavigationLink("TaskGroupと協調キャンセルの動作確認") { TaskGroupCooperativeCancellationView().navigationTitle("TaskGroupと協調キャンセル") }
                         NavigationLink("TaskとUIKit") { TaskViewController().navigationTitle("TaskとUIKit") }
                         NavigationLink("TaskとSwiftUI") { TaskView(loader: ImageLoader()).navigationTitle("TaskとSwiftUI") }
                     }
