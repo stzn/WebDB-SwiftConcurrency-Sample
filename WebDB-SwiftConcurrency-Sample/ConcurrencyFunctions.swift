@@ -202,14 +202,6 @@ func fetchThumbnailsWithTaskGroup() async throws -> [UIImage] {
     return thumbnails.map(\.value)
 }
 
-func cacheImage(_ image: UIImage) throws {
-    let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
-    guard let cachePath = cacheDirectory.first?.appendingPathComponent("imageCache.png") else {
-        return
-    }
-    try image.pngData()?.write(to: cachePath)
-}
-
 // MARK: - Actor samples
 
 // MARK: データ競合を起こすクラス

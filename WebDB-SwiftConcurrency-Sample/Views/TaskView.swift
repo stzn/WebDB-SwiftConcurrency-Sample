@@ -54,3 +54,13 @@ struct TaskView_Previews: PreviewProvider {
         TaskView(loader: .init())
     }
 }
+
+// MARK: Image Cache
+
+private func cacheImage(_ image: UIImage) throws {
+    let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+    guard let cachePath = cacheDirectory.first?.appendingPathComponent("imageCache.png") else {
+        return
+    }
+    try image.pngData()?.write(to: cachePath)
+}
