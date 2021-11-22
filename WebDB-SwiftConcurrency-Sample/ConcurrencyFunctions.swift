@@ -216,39 +216,49 @@ func fetchThumbnailsWithTaskThrowingGroup() async throws -> [UIImage] {
 ///   - needThrowError: エラーをスローする必要があるかどうか
 ///   - needCheckCancel: キャンセル状態をチェックするかどうか(する場合はCancellationErrorをスローする)
 func checkTaskGroupCooperativeCancellation(needThrowError: Bool, needCheckCancel: Bool) async {
-    struct SomeError: Error {}
+    struct AnyError: Error {}
 
-    print("===================================")
-    print("Group開始")
+    var numbers = [1, 2, 3, 4, 5]
+    let errorNumber = 1
 
+    // Child Taskが実行するメソッド
     @Sendable func runSlowTask(_ number: Int) async throws -> Int {
-        print("Child開始: number \(number)")
+        print("Child Task 開始: number \(number)")
 
-        if number == 1 && needThrowError {
-            print("Childエラー!!!!!!!!!!: number \(number)")
-            throw SomeError()
-        }
+        try? await Task.sleep(nanoseconds: NSEC_PER_SEC * UInt64.random(in: 0..<5))
 
-        if needCheckCancel {
-            print("エラーチェック: number \(number)")
-            try await Task.sleep(nanoseconds: NSEC_PER_SEC * UInt64.random(in: 2..<5))
+        if needCheckCancel && number != errorNumber {
+            print("Child Task エラーチェック開始: number \(number)")
+
+            // キャンセル済みチェック。キャンセル済だとCancellationErrorをスローする。
+            try Task.checkCancellation()
+
+
+            print("Child Task キャンセル前にエラーチェックが終わっているため処理が継続する: number \(number)")
         } else {
-            await Task.sleep(NSEC_PER_SEC * UInt64.random(in: 2..<5))
+            // キャンセル済みチェック。キャンセル済だとtrueになる。
             if Task.isCancelled {
-                // キャンセル済かどうかをチェックする(処理は継続する)
-                print("Childキャンセル済: number \(number)")
+                print("Child Task キャンセル済だが処理は継続する: number \(number)")
             }
         }
-        print("Child終了: number \(number)")
-        return number * 2
+
+        if number == errorNumber && needThrowError {
+            print("❌Child Task エラー発生❌: number \(number)")
+            throw AnyError()
+        }
+        print("🟢Child Task 処理終了🟢: number \(number)")
+        return number
     }
+
+    print("===================================")
+    print("TaskGroup 開始")
 
     do {
         let groupResults = try await withThrowingTaskGroup(
             of: Int.self,
             returning: [Int].self
         ) { group in
-            for number in 0...5 {
+            for number in numbers {
                 group.addTask {
                     try await runSlowTask(number)
                 }
@@ -256,12 +266,17 @@ func checkTaskGroupCooperativeCancellation(needThrowError: Bool, needCheckCancel
             var childResults: [Int] = []
             for try await number in group {
                 childResults.append(number)
+
+                // 中断されたChild Taskを最後に確認するための処理
+                if number != errorNumber {
+                    numbers.removeAll(where: { $0 == number })
+                }
             }
             return childResults
         }
-        print("Group終了: \(groupResults)")
+        print("🟢TaskGroup 正常終了🟢: \(groupResults)")
     } catch {
-        print("Groupエラー!!!!!!!!!!: \(error)")
+        print("❌TaskGroup エラーを捕捉❌ 処理が中断されたChild Task: \(numbers)")
     }
     print("===================================")
 }
